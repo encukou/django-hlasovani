@@ -10,27 +10,45 @@
         <p>
             Hlasuj!
         </p>
-        <table class="table poll">
-            <tr>
-                <th>Jméno</th>
-                {% for option in poll.options.all %}
-                    <th>{{ option.title }}</th>
-                {% endfor %}
-            </tr>
-            {% for record in poll.records.all %}
+        <form method="POST" action="">
+            <table class="table poll">
                 <tr>
-                    <th>{{ record.title }}</th>
-                    {% for value in record.vote_values %}
-                        {% if value == None %}
-                            <td>?</td>
-                        {% elif value %}
-                            <td class="yes">OK</td>
-                        {% else %}
-                            <td class="no">NE</td>
-                        {% endif %}
+                    <th>Jméno</th>
+                    {% for option in poll.options.all %}
+                        <th>{{ option.title }}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-        </table>
+                {% for record in poll.records.all %}
+                    <tr>
+                        <th>{{ record.title }}</th>
+                        {% for value in record.vote_values %}
+                            {% if value == None %}
+                                <td>?</td>
+                            {% elif value %}
+                                <td class="yes">OK</td>
+                            {% else %}
+                                <td class="no">NE</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td>
+                        <input type="text" name="title">
+                    </td>
+                    {% for option, value in option_values %}
+                        <td>
+                            <input type="checkbox" name="opt-{{ option.pk }}"
+                                   {% if value %}checked="checked"{% endif %}>
+                        </td>
+                    {% endfor %}
+                </tr>
+            </table>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <input type="submit" value="Hlasuj!">
+            {% csrf_token %}
+        </form>
     </div>
 {% endblock content %}
