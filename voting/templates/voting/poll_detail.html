@@ -1,0 +1,36 @@
+{% extends "voting/_layout.html" %}
+
+{% block title %}
+    {{ poll.title }} – {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ poll.title }}</h1>
+        <p>
+            Hlasuj!
+        </p>
+        <table class="table">
+            <tr>
+                <th>Jméno</th>
+                {% for option in poll.options.all %}
+                    <th>{{ option.title }}</th>
+                {% endfor %}
+            </tr>
+            {% for record in poll.records.all %}
+                <tr>
+                    <th>{{ record.title }}</th>
+                    {% for value in record.vote_values %}
+                        {% if value == None %}
+                            <td>?</td>
+                        {% elif value %}
+                            <td>OK</td>
+                        {% else %}
+                            <td>NE</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

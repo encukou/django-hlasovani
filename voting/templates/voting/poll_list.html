@@ -9,7 +9,7 @@
         <ul>
             {% for poll in polls %}
                 <li>
-                    <a>{{ poll.title }}</a>
+                    <a href="{% url 'poll_detail' pk=poll.pk %}">{{ poll.title }}</a>
                 </li>
             {% endfor %}
         </ul>
