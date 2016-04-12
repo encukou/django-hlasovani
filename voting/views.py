@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def poll_list(request):
+    return render(request, 'voting/poll_list.html', {})
