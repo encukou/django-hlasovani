@@ -10,7 +10,7 @@
         <p>
             Hlasuj!
         </p>
-        <table class="table">
+        <table class="table poll">
             <tr>
                 <th>Jméno</th>
                 {% for option in poll.options.all %}
@@ -24,9 +24,9 @@
                         {% if value == None %}
                             <td>?</td>
                         {% elif value %}
-                            <td>OK</td>
+                            <td class="yes">OK</td>
                         {% else %}
-                            <td>NE</td>
+                            <td class="no">NE</td>
                         {% endif %}
                     {% endfor %}
                 </tr>

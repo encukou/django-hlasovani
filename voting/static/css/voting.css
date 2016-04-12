@@ -1,0 +1,15 @@
+table.poll {
+    width: auto;
+}
+
+table.poll td {
+    text-align: center;
+}
+
+table.poll td.yes {
+    background-color: #5cb85c;
+}
+
+table.poll td.no {
+    background-color: #d9534f;
+}
