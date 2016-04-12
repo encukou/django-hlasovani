@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
+from voting import models
+
 def poll_list(request):
-    return render(request, 'voting/poll_list.html', {})
+    polls = models.Poll.objects.all()
+    return render(request, 'voting/poll_list.html', {'polls': polls})
