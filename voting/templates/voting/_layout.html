@@ -1,19 +1,41 @@
+{## Tohle je HTML šablona: něco jako formulář s instrukcemi, jak ho vyplnit. ##}
+{## Vyplněním vznikne HTML stránka. ##}
+
+{## Tahle základní šablona obsahuje základní strukturu stránky, a ##}
+{## je použitá v ostatních šablonách. ##}
+
+{## Dokumentaci ke značkám HTML, jako <head>, kdyžtak hledej na https://developer.mozilla.org/en-US/ ##}
+
+{## Tenhle kousek kódu zpřístupňuje funkci "static", použitou později. ##}
 {% load staticfiles %}
 
+{## Začínáme HTML dokument. Je v češtině (cs). ##}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
+    {## Hlavička: informace o stránce, a o dalších souborech, které potřebuje. ##}
     <head>
+        {## Tyhle 3 věci musí být v <head> jako první. ##}
+        {## Jsou zkopírované ze základní struktury stránky:  ##}
+        {## http://getbootstrap.com/getting-started/#template ##}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        {## Tady nastavíme hlavičku: text, který se objeví jako název záložky s naší stránkou. ##}
+        {## <title> je značka HTML. ##}
+        {## {% block %} je šablonovací příkaz, který umožňuje tuhle část stránky ##}
+        {## zaměnit za něco jiného. ##}
         <title>{% block title %}Hlasování{% endblock title %}</title>
 
-        <!-- Bootstrap -->
+        {## Tady definujeme styly (CSS) – viz soubor voting/static/css/voting.css. ##}
         <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/voting.css' %}">
     </head>
+    {## Tělo stránky: To, co se objeví v prohlížeči. ##}
     <body>
+        {## {% block %} umožňuje jednotlivým stránkám změnit obsah. ##}
+        {## Tady je hlavička, s odkazem na hlavní stránku, ##}
+        {## která se ale na hlavní stránce zobrazovat nemusí: ##}
         {% block header %}
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
@@ -21,9 +43,13 @@
                 </div>
             </nav>
         {% endblock header %}
+
+        {## A tady je místo pro obsah – tohle by každá stránka měla vyplnit po svém. ##}
         {% block content %}
         {% endblock content %}
 
+        {## A nakonec skripty, které definují funkčnost stránky. ##}
+        {## Tohle je součást Bootstrapu (viz voting/static/css/voting.css). ##}
         <script src="{% static 'static_jquery/js/jquery.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     </body>

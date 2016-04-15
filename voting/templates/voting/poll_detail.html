@@ -1,25 +1,42 @@
+{## Tohle je HTML šablona pro stránku konkrétního hlasování. ##}
+{## Obecný úvod k šablonám je v _layout.html. ##}
+
+{## Z oné _layout.html vezmeme základní strukturu: ##}
 {% extends "voting/_layout.html" %}
 
+{## Předefinujeme název stránky: přidáme k němu název hlasování. ##}
+{## {{ block.super }} pak přilípne původní obsah bloku, ak jak ho definuje _layout.html ##}
 {% block title %}
     {{ poll.title }} – {{ block.super }}
 {% endblock title %}
 
+{## A tady je samotný obsah stránky ##}
 {% block content %}
     <div class="container">
+        {## Hlavička (h1) ##}
+        {## "poll" je objekt třídy Poll z modulu models.py ##}
         <h1>{{ poll.title }}</h1>
+        {## Odstavec (p) s instrukcemi ##}
         <p>
             Hlasuj!
         </p>
+        {## Formulář, který po odeslání pošle POST požadavek na stejnou adresu ##}
         <form method="POST" action="">
+            {## Tabulka ##}
             <table class="table poll">
+                {## První řádek tabulky s nadpisem sloupců: "jméno", a pak ##}
+                {## jeden nadpis pro každou Možnost ##}
                 <tr>
                     <th>Jméno</th>
                     {% for option in poll.options.all %}
                         <th>{{ option.title }}</th>
                     {% endfor %}
                 </tr>
+                {## Pak jeden tabulkový řádek pro každý záznam ##}
+                {## (Django automaticky zavolá funkce jako records.all a vote_values) ##}
                 {% for record in poll.records.all %}
                     <tr>
+                        {## "record" je objekt třídy Record z modulu models.py ##}
                         <th>{{ record.title }}</th>
                         {% for value in record.vote_values %}
                             {% if value == None %}
@@ -32,10 +49,14 @@
                         {% endfor %}
                     </tr>
                 {% endfor %}
+                {## A nakonec tabulkový řádek s formulářem ##}
                 <tr>
+                    {## Textové políčko ##}
                     <td>
                         <input type="text" name="title">
                     </td>
+                    {## A jedno zaškrtávátko pro každou možnost. ##}
+                    {## Podle "value" je buď zaškrtnuté nebo ne. ##}
                     {% for option, value in option_values %}
                         <td>
                             <input type="checkbox" name="opt-{{ option.pk }}"
@@ -44,10 +65,15 @@
                     {% endfor %}
                 </tr>
             </table>
+            {## Máme-li zobrazit chybovou hlášku, udělejme to tady: ##}
             {% if error %}
                 <p>{{ error }}</p>
             {% endif %}
+            {## Tlačítko na odeslání: ##}
             <input type="submit" value="Hlasuj!">
+            {## A ještě speciální skrytá hodnota, která pomáhá proti ##}
+            {## zlým lidem, kteří by chtěli formulář odeslat bez našeho ##}
+            {## vědomí. ##}
             {% csrf_token %}
         </form>
     </div>

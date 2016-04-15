@@ -1,15 +1,26 @@
+{## Tohle je HTML šablona pro stránku se seznamem hlasování. ##}
+{## Obecný úvod k šablonám je v _layout.html. ##}
+
+{## Z oné _layout.html vezmeme základní strukturu: ##}
 {% extends "voting/_layout.html" %}
 
+{## Předefinujeme hlavičku s odkazem na hlavní stránku. ##}
+{## Tohle je hlavní stránka, takže odkaz není potřeba. ##}
 {% block header %}
 {% endblock header %}
 
+{## A vlastní obsah: ##}
 {% block content %}
     <div class="container">
+        {## Nadpis (h1) ##}
         <h1>Hlasování</h1>
+        {## Odstavec (p) s instrukcemi ##}
         <p>
             Vyber si, kde chceš hlasovat:
         </p>
+        {## Odrážkový seznam ... ##}
         <ul>
+            {## ... s odrážkou a odkazem pro každé hlasování ##}
             {% for poll in polls %}
                 <li>
                     <a href="{% url 'poll_detail' pk=poll.pk %}">{{ poll.title }}</a>

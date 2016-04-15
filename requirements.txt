@@ -1,2 +1,3 @@
+django
 django-static-jquery
 django-bootstrap-static

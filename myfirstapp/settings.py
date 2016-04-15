@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+## Tenhle soubor obsahuje nastavení projektu.
+## Byl skoro celý automaticky vygenerován, a pak pozměněn podle
+## mých představ.
+## Každá taková změna je okomentovaná česky, všechny ostatní jsou popsány
+## v dokumentaci (anglicky, viz výše).
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -37,8 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ## Dvě knihovny, díky kterým bude stránka hezčí.
+    ## Obsahují Bootstrap (http://getbootstrap.com/)
     'django_static_jquery',
     'bootstrap',
+    ## "Appka" se hlavní funkcionalitou tohoto projektu
     'voting',
 ]
 
@@ -107,8 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+## Tady říkám Djangu, ať mluví česky, kde může
+LANGUAGE_CODE = 'cs_CZ'
 
+## Časová zóna, vybraná ze seznamu na:
+##   https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 TIME_ZONE = 'Europe/Prague'
 
 USE_I18N = True
@@ -122,5 +134,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')

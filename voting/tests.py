@@ -1,3 +1,3 @@
-from django.test import TestCase
+## Testování je důležité! Ale o tom zase příště...
 
-# Create your tests here.
+from django.test import TestCase

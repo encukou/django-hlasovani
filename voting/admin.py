@@ -1,3 +1,8 @@
+## Tady se nastavuje, co všechno z naší aplikace bude vidět
+## v administračním rozhraní.
+## Aby se tam dalo měnit všechno, registrujeme všechny modely
+## z models.py.
+
 from django.contrib import admin
 from voting import models
 

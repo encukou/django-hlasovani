@@ -1,15 +1,43 @@
+/*
+## Tohle je kaskádový styl (Cascading Stylesheet - CSS).
+## Určuje, jak bude webová stránka vypadat.
+##
+## Každé CSS pravidlo platí pro nějakou skupinu elementů na webové stránce
+## (třeba všechny hlasovací tabulky), a přiřazuje jim nějaké vlastnosti
+## (velikost, barvu, zarovnání písma, odsazení, řádkování, ...)
+##
+## Dokumentaci k CSS doporučuji hledat na stránce MDN:
+##  https://developer.mozilla.org/en-US/
+## (Existují i stránky, které sice Google řadí výš ale nejsou tak kvalitní.)
+##
+## Náš projekt používá Bootstrap, což je kolekce kaskádových stylů se kterými
+## stránky vypadají docela hezky. Tady jen změníme pár věcí, kde Bootstrap
+## nemyslel na potřeby našeho konkrétního projektu.
+*/
+
+/* ## Všechny tabulky s nastavenou třídou class="poll" ... */
 table.poll {
+    /* ## ... budou mít automatickou velikost. (Normálně Bootstrap dělá tabulky
+     * ## přes celou volnou plochu.)
+     */
     width: auto;
 }
 
+/* ## Všechny buňky tabulky s class="poll" ... */
 table.poll td {
+    /* ## ... budou zarovnané na střed */
     text-align: center;
 }
 
+/* ## Všechny buňky s class="yes" tabulky s class="poll" ... */
 table.poll td.yes {
+    /* ## ... budou mít zelené pozadí.
+     * ## Barvičky se dají vybírat třeba na http://www.colorpicker.com/
+     */
     background-color: #5cb85c;
 }
 
+/* ## Podobně pro "no" -- červené pozadí */
 table.poll td.no {
     background-color: #d9534f;
 }
