@@ -7,7 +7,7 @@ Návod na to, jak nainstalovat Python a nastavit virtuální prostředí, je na:
 
 Instalace:
 
-    pip install -r requirements.txt
+    python -m pip install -r requirements.txt
     python manage.py migrate
     python manage.py createsuperuser  # (zeptá se na nové přihlašovací údaje)
 
